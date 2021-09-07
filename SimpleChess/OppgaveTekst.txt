@@ -1,0 +1,55 @@
+﻿Obligatorisk oppgave - SimpleChess
+
+Denne oppgaven skal leveres inn på e-post til oblig@getacademy.no i form av lenke til et public GitHub-repository. 
+Alle de obligatoriske oppgavene i kurset må være innlevert og godkjent for å kunne gå videre til neste modul og for å kunne få praksis i bedrift. 
+
+Du skal jobbe med starten på et sjakkspill i kommandolinjevinduet. 
+Vi har et sjakkbrett og to typer brikker: tårn og løper. 
+De andre brikkene er ikke laget, og det skilles ikke på om en brikke er hvit eller svart. 
+Vi skal jobbe med å sørge for at brikkene bare får flytte etter sjakkreglene. 
+Tårnet kan bevege seg så langt det vil mot høyre, venstre, opp eller ned. 
+Løperen kan bevege seg så langt den vil diagonalt, det vil si opp og til høyre, 
+opp og til venstre, ned og til høyre eller ned og til venstre.
+
+I virkeligheten kan ikke brikkene hoppe over andre brikker, men det ser vi bort fra her. 
+
+I vårt eksempel kan aldri en brikke flyttes til en rute hvor det står en annen brikke. 
+(Mens i ordentlig sjakk er det lov dersom brikken er motstanderens.)
+
+På engelsk heter tårn rook og løper bishop. Koden du tar utgangspunkt i er på engelsk. 
+(I koden brukes engelsk, men brukergrensesnittet er på norsk.)
+
+-------------------------------------------------------------------------------------------------
+
+1. Last ned koden som zip-fil fra github.com/GetAcademy/SimpleChess. 
+Ved å laste ned som zip-fil får du ikke med knytningen til Git 
+- og får mindre problemer når du skal laste opp til ditt eget Git-repository senere. 
+
+2. Endre klassen Piece til dette:
+
+namespace SimpleChess
+{
+    abstract class Piece
+    {
+        public string Symbol { get; }
+
+        protected Piece(string symbol)
+        {
+            Symbol = symbol;
+        }
+
+        public abstract bool Move(string fromPosition, string toPosition);
+    }
+}
+
+3. I Program.cs bytt ut disse to linjene:
+var bishop = new Piece("Bishop", "LPR");
+var rook = new Piece("Rook", "TRN");
+
+... med disse to linjene:
+var bishop = new Bishop();
+var rook = new Rook();
+
+Implementer så klassene Bishop og Rook og sørg for at alt virker som før. 
+Begge klassene skal arve fra Piece. 
+Etter denne endringen skal det ikke lenger være noen private readonly string _type; i Piece eller noen av de andre klassene.
